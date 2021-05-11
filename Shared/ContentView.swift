@@ -12,11 +12,13 @@ struct ContentView: View {
     @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View {
-        VStack {
-            ForEach (viewModel.records) {record in
-                WeatherView(record: record, viewModel: viewModel)
-            }
-        }.padding()
+        ScrollView(.vertical) {
+            VStack {
+                ForEach (viewModel.records) {record in
+                    WeatherView(record: record, viewModel: viewModel)
+                }
+            }.padding()
+        }
     }
 }
 
@@ -24,20 +26,21 @@ struct WeatherView: View {
     var record: WeatherModel.WeatherRecord
     var viewModel: WeatherViewModel
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10.0)
-                .stroke()
-            HStack {
-                Text("☀️").font(.largeTitle)
-                VStack {
-                    Text(record.cityName)
-                    Text("Temperature: \(record.temperature, specifier: "%.1f")℃").font(.caption)
-                }
-                Text("↻").font(.largeTitle).onTapGesture {
-                    viewModel.refresh(record: record)
-                }
+            ZStack {
+                RoundedRectangle(cornerRadius: 10.0)
+                    .stroke()
+                    .frame(width: 320, height: 80)
+                HStack {
+                    Text("☀️").font(.largeTitle).alignmentGuide(.leading, computeValue: { d in d[.leading] })
+                    VStack(alignment: .leading) {
+                        Text(record.cityName)
+                        Text("Temperature: \(record.temperature, specifier: "%.1f")℃").font(.caption)
+                    }
+                    Text("↻").font(.largeTitle).onTapGesture {
+                        viewModel.refresh(record: record)
+                    }.alignmentGuide(.trailing, computeValue: {d in d[.trailing]})
+                }.frame(width: 300)
             }
-        }
     }
 }
 
