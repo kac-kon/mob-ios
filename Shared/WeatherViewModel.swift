@@ -18,4 +18,8 @@ class WeatherViewModel: ObservableObject {
     func refresh(record: WeatherModel.WeatherRecord) {
         model.refresh(record: record)
     }
+    
+    func change_parameter(record: WeatherModel.WeatherRecord) {
+        model.change_parameter(record: record)
+    }
 }

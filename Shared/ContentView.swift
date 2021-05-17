@@ -31,15 +31,29 @@ struct WeatherView: View {
                     .stroke()
                     .frame(width: 320, height: 80)
                 HStack {
-                    Text("☀️").font(.largeTitle).alignmentGuide(.leading, computeValue: { d in d[.leading] })
+                    GeometryReader { geometry in
+                        Text("\(record.icon)").font(.system(size: geometry.size.height)).alignmentGuide(.leading, computeValue: { d in d[.leading] })}.frame(width: 40, height: 40)
+                    Spacer()
                     VStack(alignment: .leading) {
                         Text(record.cityName)
-                        Text("Temperature: \(record.temperature, specifier: "%.1f")℃").font(.caption)
+                        if (record.viewed == 0) {
+                            Text("Temperature: \(record.temperature, specifier: "%.1f")℃").font(.caption)
+                        } else if (record.viewed == 1) {
+                            Text("Humidity: \(record.humidity)%").font(.caption)
+                        } else if (record.viewed == 2) {
+                            Text("Wind speed: \(record.windspeed, specifier: "%.1f")kmph").font(.caption)
+                        } else if (record.viewed == 3) {
+                            Text("Wind direction: \(record.windDirection)°").font(.caption)
+                        }
                     }
+                    Spacer()
                     Text("↻").font(.largeTitle).onTapGesture {
                         viewModel.refresh(record: record)
                     }.alignmentGuide(.trailing, computeValue: {d in d[.trailing]})
-                }.frame(width: 300)
+                }.frame(width: 280, height: 40)
+            }
+            .onTapGesture {
+                viewModel.change_parameter(record: record)
             }
     }
 }
