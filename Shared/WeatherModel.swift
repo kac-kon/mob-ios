@@ -14,46 +14,44 @@ let icons = ["☀️", "🌨", "🌦", "🌧", "🌤", "☁️"]
 struct WeatherModel {
     
     var records: Array<WeatherRecord>
+    var currCity: WeatherRecord? = nil
     
-    init(cities: Array<String>) {
+    init(cities: [String: String]) {
         records = Array<WeatherRecord>()
-        for city in cities {
-            records.append(WeatherRecord(cityName: city))
+        for (city, id) in cities {
+            records.append(WeatherRecord(weatherId: id, cityName: city))
         }
-        setIcons()
     }
     
     struct WeatherRecord: Identifiable {
         var id: UUID = UUID()
+        var weatherId: String
+        var cords: String = "0.0,0.0"
         var cityName: String
-        var weatherStatusCode: Int = Int.random(in: 0...5)
         var temperature: Float = Float.random(in: -10.0...30.0)
         var humidity: Int = Int.random(in: 0...100)
         var windspeed: Float = Float.random(in: 0.0...20.0)
         var windDirection: Int = Int.random(in: 0..<360)
         var viewed: Int = 0
-        var weatherStatus: String = ""
-        var icon: String = ""
+        var weatherStateName: String = ""
+        var weatherStateAbbr: String = ""
+        var iconUrl: String = ""
     }
     
-    mutating func setIcons(){
-        for i in 0..<records.count {
-            records[i].weatherStatus = status[records[i].weatherStatusCode]
-            records[i].icon = icons[records[i].weatherStatusCode]
-        }
-    }
     
-    mutating func refresh(record: WeatherRecord) {
+    
+    mutating func refresh(record: WeatherRecord, val: MetaWeatherResponse) {
         for i in 0..<records.count {
             if (records[i].id == record.id) {
-                records[i].weatherStatusCode = Int.random(in: 0...5)
-                records[i].temperature = Float.random(in: -10.0...30.0)
-                records[i].humidity = Int.random(in: 0...100)
-                records[i].windspeed = Float.random(in: 0.0...20.0)
-                records[i].windDirection = Int.random(in: 0..<360)
+                records[i].weatherStateName = val.consolidatedWeather[0].weatherStateName
+                records[i].weatherStateAbbr = val.consolidatedWeather[0].weatherStateAbbr
+                records[i].temperature = Float(val.consolidatedWeather[0].theTemp)
+                records[i].humidity = Int(val.consolidatedWeather[0].humidity)
+                records[i].windspeed = Float(val.consolidatedWeather[0].windSpeed)
+                records[i].windDirection = Int(Float(val.consolidatedWeather[0].windDirection))
+                records[i].iconUrl = "https://www.metaweather.com/static/img/weather/png/64/\(records[i].weatherStateAbbr).png"
             }
         }
-        setIcons()
         print("refreshing city: \(record.cityName)")
     }
     

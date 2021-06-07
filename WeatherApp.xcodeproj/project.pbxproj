@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0603E051266E3FFE00F9DFA5 /* MetaWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0603E050266E3FFD00F9DFA5 /* MetaWeatherResponse.swift */; };
+		0603E052266E3FFE00F9DFA5 /* MetaWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0603E050266E3FFD00F9DFA5 /* MetaWeatherResponse.swift */; };
+		0603E056266E42E200F9DFA5 /* MetaWeatherFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0603E055266E42E200F9DFA5 /* MetaWeatherFetcher.swift */; };
+		0603E057266E42E200F9DFA5 /* MetaWeatherFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0603E055266E42E200F9DFA5 /* MetaWeatherFetcher.swift */; };
+		0603E05B266E52E500F9DFA5 /* MetaWeatherResponseLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0603E05A266E52E500F9DFA5 /* MetaWeatherResponseLocations.swift */; };
+		0603E05C266E52E500F9DFA5 /* MetaWeatherResponseLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0603E05A266E52E500F9DFA5 /* MetaWeatherResponseLocations.swift */; };
 		ACE0D791264188BC008E0819 /* WeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0D77E264188BA008E0819 /* WeatherAppApp.swift */; };
 		ACE0D792264188BC008E0819 /* WeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0D77E264188BA008E0819 /* WeatherAppApp.swift */; };
 		ACE0D793264188BC008E0819 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0D77F264188BA008E0819 /* ContentView.swift */; };
@@ -20,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0603E050266E3FFD00F9DFA5 /* MetaWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaWeatherResponse.swift; sourceTree = "<group>"; };
+		0603E055266E42E200F9DFA5 /* MetaWeatherFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaWeatherFetcher.swift; sourceTree = "<group>"; };
+		0603E05A266E52E500F9DFA5 /* MetaWeatherResponseLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaWeatherResponseLocations.swift; sourceTree = "<group>"; };
 		ACE0D77E264188BA008E0819 /* WeatherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppApp.swift; sourceTree = "<group>"; };
 		ACE0D77F264188BA008E0819 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ACE0D780264188BC008E0819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +77,9 @@
 				ACE0D780264188BC008E0819 /* Assets.xcassets */,
 				ACE0D7A126418DB1008E0819 /* WeatherModel.swift */,
 				ACE0D7A6264190C5008E0819 /* WeatherViewModel.swift */,
+				0603E050266E3FFD00F9DFA5 /* MetaWeatherResponse.swift */,
+				0603E055266E42E200F9DFA5 /* MetaWeatherFetcher.swift */,
+				0603E05A266E52E500F9DFA5 /* MetaWeatherResponseLocations.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -196,9 +208,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACE0D793264188BC008E0819 /* ContentView.swift in Sources */,
+				0603E056266E42E200F9DFA5 /* MetaWeatherFetcher.swift in Sources */,
 				ACE0D7A7264190C5008E0819 /* WeatherViewModel.swift in Sources */,
 				ACE0D7A226418DB2008E0819 /* WeatherModel.swift in Sources */,
+				0603E05B266E52E500F9DFA5 /* MetaWeatherResponseLocations.swift in Sources */,
 				ACE0D791264188BC008E0819 /* WeatherAppApp.swift in Sources */,
+				0603E051266E3FFE00F9DFA5 /* MetaWeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,9 +222,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACE0D794264188BC008E0819 /* ContentView.swift in Sources */,
+				0603E057266E42E200F9DFA5 /* MetaWeatherFetcher.swift in Sources */,
 				ACE0D7A8264190C5008E0819 /* WeatherViewModel.swift in Sources */,
 				ACE0D7A326418DB2008E0819 /* WeatherModel.swift in Sources */,
+				0603E05C266E52E500F9DFA5 /* MetaWeatherResponseLocations.swift in Sources */,
 				ACE0D792264188BC008E0819 /* WeatherAppApp.swift in Sources */,
+				0603E052266E3FFE00F9DFA5 /* MetaWeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
