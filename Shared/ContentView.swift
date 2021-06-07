@@ -48,9 +48,9 @@ struct MapView: View {
 }
 
 struct WeatherView: View {
-    @State private var showingSheet = false
     var record: WeatherModel.WeatherRecord
     var viewModel: WeatherViewModel
+    @State var showingSheet = false
     var body: some View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10.0)
@@ -77,8 +77,10 @@ struct WeatherView: View {
                     Spacer()
                     Text("↻").font(.largeTitle).onTapGesture {
                         viewModel.refresh(record: record)
-                    }.alignmentGuide(.trailing, computeValue: {d in d[.trailing]})
-                    Text("🌍").font(.largetTitle).onTapGesture {
+                    }
+                    //.alignmentGuide(.trailing, computeValue: {d in d[.trailing]})
+                    Text("S")
+                        .onTapGesture {
                         showingSheet.toggle()
                     }
                     .sheet(isPresented: $showingSheet) {
@@ -108,6 +110,7 @@ struct WeatherView: View {
         }
     func getPlace() -> Place {
         let cords = record.cords.components(separatedBy: ",")
+        print(cords)
         return Place(cords: .init(latitude: Double(cords[0]) ?? 0.0, longitude: Double(cords[1]) ?? 0.0))
     }
 }

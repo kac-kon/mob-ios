@@ -49,6 +49,7 @@ struct WeatherModel {
                 records[i].humidity = Int(val.consolidatedWeather[0].humidity)
                 records[i].windspeed = Float(val.consolidatedWeather[0].windSpeed)
                 records[i].windDirection = Int(Float(val.consolidatedWeather[0].windDirection))
+                records[i].cords = val.lattLong
                 records[i].iconUrl = "https://www.metaweather.com/static/img/weather/png/64/\(records[i].weatherStateAbbr).png"
             }
         }
