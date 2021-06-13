@@ -14,11 +14,11 @@ struct ContentView: View {
     @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View {
-        ScrollView(.vertical) {
-            VStack {
-                ForEach (viewModel.records) {record in
+        NavigationView {
+            List(viewModel.records) {
+                record in NavigationLink(destination: DetailsView(record: record)) {
                     WeatherView(record: record, viewModel: viewModel)
-                }
+                }.navigationTitle("Forecast")
             }.padding()
         }
     }
@@ -55,7 +55,7 @@ struct WeatherView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10.0)
                     .stroke()
-                    .frame(width: 320, height: 80)
+                    .frame(width: 260, height: 80)
                 HStack {
                   //  let data = try? Data(contentsOf: record.iconUrl)
                   //  GeometryReader { geometry in
@@ -79,7 +79,7 @@ struct WeatherView: View {
                         viewModel.refresh(record: record)
                     }
                     //.alignmentGuide(.trailing, computeValue: {d in d[.trailing]})
-                    Text("S")
+                    Text("M")
                         .onTapGesture {
                         showingSheet.toggle()
                     }
@@ -88,7 +88,7 @@ struct WeatherView: View {
                         let place_ = getPlace()
                         MapView(region: region, place: [place_])
                     }
-                }.frame(width: 280, height: 40)
+                }.frame(width: 240, height: 40)
             }
             .onTapGesture {
                 viewModel.change_parameter(record: record)
@@ -118,5 +118,23 @@ struct WeatherView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(viewModel: WeatherViewModel())
+    }
+}
+
+struct DetailsView: View {
+    var record: WeatherModel.WeatherRecord
+    
+    var body: some View {
+        VStack {
+            Text(record.cityName).font(.largeTitle)
+            Text(record.date)
+            Text("Coordinates: \(record.cords)")
+            Text("Humidity: \(record.humidity)")
+            Text("Temperature: \(record.temperature)")
+            Text("Where on Earth ID: \(record.weatherId)")
+            Text("Pressure: \(record.pressure)hPa")
+            Text("Visibility: \(record.visibility) mi")
+            Text("Predictability: \(record.predictability)%")
+        }
     }
 }

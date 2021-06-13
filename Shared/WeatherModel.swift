@@ -36,6 +36,10 @@ struct WeatherModel {
         var weatherStateName: String = ""
         var weatherStateAbbr: String = ""
         var iconUrl: String = ""
+        var visibility: Float = 0.0
+        var predictability: Int = 0
+        var pressure: Float = 1013.0
+        var date: String = ""
     }
     
     
@@ -51,6 +55,10 @@ struct WeatherModel {
                 records[i].windDirection = Int(Float(val.consolidatedWeather[0].windDirection))
                 records[i].cords = val.lattLong
                 records[i].iconUrl = "https://www.metaweather.com/static/img/weather/png/64/\(records[i].weatherStateAbbr).png"
+                records[i].visibility = Float(val.consolidatedWeather[0].visibility)
+                records[i].predictability = Int(val.consolidatedWeather[0].predictability)
+                records[i].pressure = Float(val.consolidatedWeather[0].airPressure)
+                records[i].date = val.consolidatedWeather[0].applicableDate
             }
         }
         print("refreshing city: \(record.cityName)")
